@@ -33,5 +33,10 @@
     "mocha": "^2.5.3",
     "sinon": "^1.17.4",
     "supertest": "^1.2.0"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "co-express": "^1.2.1",
+    "node-fetch": "^1.5.3"
   }
 }

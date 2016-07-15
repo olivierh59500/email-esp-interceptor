@@ -7,6 +7,7 @@ const app = new Express();
 // common middleware
 app.use(bodyParser.json());
 
+require('./routes/recipientListRoutes')(app);
 
 app.use(notFound);
 app.use(errorMiddleware);

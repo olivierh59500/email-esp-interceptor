@@ -13,8 +13,11 @@ config.port = int(process.env.PORT, 10) || 4444;
 // Service Hosts
 config.dbURL = process.env.MONGOHQ_URL || 'mongodb://localhost/ft-email-esp-interceptor-dev';
 config.sentryDSN = process.env.SENTRY_DSN;
+config.campaignsHost = process.env.CAMPAIGNS_HOST || 'https://email-webservices.ft.com/campaigns';
 
 // Security and Auth
+config.campaignsUsername = process.env.CAMPAIGNS_USERNAME;
+config.campaignsPassword = process.env.CAMPAIGNS_PASSWORD;
 
 // Config Variables
 config.logLevel = process.env.LOG_LEVEL || 'info';
