@@ -1,0 +1,37 @@
+{
+  "name": "email-esp-interceptor",
+  "version": "1.0.0",
+  "description": "Email Service Provider Interceptor",
+  "main": "app/server.js",
+  "scripts": {
+    "start": "node ./app/server.js",
+    "test": "./bin/test.sh",
+    "lint": "./bin/lint.sh",
+    "clean": "./bin/clean.sh",
+    "commit": "./bin/commit.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Financial-Times/email-esp-interceptor.git"
+  },
+  "author": "Andrew Snead",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Financial-Times/email-esp-interceptor/issues"
+  },
+  "homepage": "https://github.com/Financial-Times/email-esp-interceptor#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "co-mocha": "^1.1.2",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.3.0",
+    "eslint-plugin-react": "^5.1.1",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
+    "supertest": "^1.2.0"
+  }
+}
