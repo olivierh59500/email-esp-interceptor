@@ -10,11 +10,10 @@ module.exports = (app) => {
     .route('/')
     //.get(coExpress(recipientList.list))
     .post(coExpress(recipientList.create));
-  //router
-    //.route('/:recipientListId')
-    //.get(coExpress(recipientList.read))
+  router
+    .route('/:recipientListId')
+    .get(coExpress(recipientList.read))
     //.delete(coExpress(recipientList.deleterecipientList));
 
-  //router.param('recipientListId', coExpress(recipientList.recipientListById));
   app.use('/recipient-lists', router);
 };
