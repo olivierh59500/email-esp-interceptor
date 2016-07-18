@@ -6,14 +6,12 @@ const router = express.Router();
 
 module.exports = (app) => {
   router
-    //.use(ensureAuthenticated)
+    .use(ensureAuthenticated)
     .route('/')
-    //.get(coExpress(recipientList.list))
     .post(coExpress(recipientList.create));
   router
     .route('/:recipientListId')
-    .get(coExpress(recipientList.read))
-    //.delete(coExpress(recipientList.deleterecipientList));
+    .get(coExpress(recipientList.read));
 
   app.use('/recipient-lists', router);
 };
