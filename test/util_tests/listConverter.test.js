@@ -2,6 +2,7 @@ const expect = require('chai').expect;
 const { recipientListToSubstitution } = require('../../app/utils/listConverter');
 
 const validSubstitution = require('../fixtures/validSubstitution.json');
+const missingEmailSubstitution = require('../fixtures/missingEmailSubstitution.json');
 
 describe('List Converter', () => {
   describe('recipientListToSubstitution', () => {
@@ -24,6 +25,14 @@ describe('List Converter', () => {
       substitution.data.forEach(recipient => {
         expect(recipientEmails).to.contain(recipient.email);
       });
+    });
+
+    it('throws error if a recipient does not have an email', () => {
+      try {
+        recipientListToSubstitution(missingEmailSubstitution);
+      } catch (err) {
+        expect(err).to.exist;
+      }
     });
   });
 });
