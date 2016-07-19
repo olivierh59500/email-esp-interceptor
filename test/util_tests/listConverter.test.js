@@ -5,9 +5,25 @@ const validSubstitution = require('../fixtures/validSubstitution.json');
 
 describe('List Converter', () => {
   describe('recipientListToSubstitution', () => {
+    const substitution = recipientListToSubstitution(validSubstitution);
+
     it('returns a substitution item with required properties', () => {
-      const substitution = recipientListToSubstitution(validSubstitution);
       expect(substitution).to.contain.all.keys(['name', 'data', 'description']);
+    });
+
+    it('creates an array of recipients for the data property', () => {
+      expect(substitution.data).to.be.instanceOf(Array);
+    });
+
+    it('creates an array of recipients for the data property', () => {
+      expect(substitution.data).to.be.instanceOf(Array);
+    });
+
+    it('each recipient in the data array has an email', () => {
+      const recipientEmails = validSubstitution.recipients.map(recip => recip.address.email);
+      substitution.data.forEach(recipient => {
+        expect(recipientEmails).to.contain(recipient.email);
+      });
     });
   });
 });
