@@ -38,6 +38,7 @@
   "dependencies": {
     "co": "^4.6.0",
     "co-express": "^1.2.1",
+    "dotenv": "^2.0.0",
     "node-fetch": "^1.5.3"
   }
 }
