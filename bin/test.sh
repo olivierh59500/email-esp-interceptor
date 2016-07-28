@@ -11,7 +11,7 @@ echo "cleaning..."
 PATH=$(npm bin):$PATH
 
 export NODE_ENV=test
-mocha_args="--slow 200 --reporter spec --colors --recursive --check-leaks"
+mocha_args="$* --slow 200 --reporter spec --colors --recursive --check-leaks"
 echo ✓
 echo "running coverage and mocha tests..."
 IFS=" "

@@ -16,10 +16,6 @@ describe('List Converter', () => {
       expect(substitution.data).to.be.instanceOf(Array);
     });
 
-    it('creates an array of recipients for the data property', () => {
-      expect(substitution.data).to.be.instanceOf(Array);
-    });
-
     it('each recipient in the data array has an email', () => {
       const recipientEmails = validRecipients.recipients.map(recip => recip.address.email);
       substitution.data.forEach(recipient => {

@@ -2,9 +2,8 @@ const substitutionService = require('../services/substitutionService');
 const transmissionService = require('../services/transmissionService');
 const transmissionFormatter = require('../utils/transmissionFormatter');
 const listConverter = require('../utils/listConverter');
-const handleError = require('../utils/handleError');
 
-function* create(req, res, next) {
+function* create(req, res) {
   const transmission = req.body;
   const substitutionId = transmission.recipients.list_id;
   try {
@@ -23,7 +22,15 @@ function* create(req, res, next) {
       }
     });
   } catch (err) {
-    next(handleError(err.message, err.status));
+    res.status(400).json({
+      errors: [
+        {
+          description: 'There was a problem with your transmission request.',
+          code: '400',
+          message: err.message
+        }
+      ]
+    });
   }
 }
 
