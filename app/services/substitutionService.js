@@ -1,4 +1,7 @@
-const fetcher = require('./_fetcher');
+const config = require('../../config');
+const auth = new Buffer(`${config.campaignsUsername}:${config.campaignsPassword}`);
+const basicAuth = `Basic ${auth.toString('base64')}`;
+const fetcher = require('./_fetcher')(config.campaignsHost, basicAuth);
 
 function* fetchSubstitutions(query, res) {
   return yield fetcher.fetchResourceList('/substitutions', res, query);

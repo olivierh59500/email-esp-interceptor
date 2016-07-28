@@ -1,0 +1,68 @@
+{
+  "name": "graduate_students",
+  "description": "An email list of graduate students at UMBC",
+  "attributes": {
+    "internal_id": 112,
+    "list_group_id": 12321
+  },
+  "recipients": [
+    {
+      "address": {
+        "email": "wilmaflin@yahoo.com",
+        "name": "Wilma"
+      },
+      "tags": [
+        "greeting",
+        "prehistoric",
+        "fred",
+        "flintstone"
+      ],
+      "metadata": {
+        "age": "24",
+        "place": "Bedrock"
+      },
+      "substitution_data": {
+        "favorite_color": "SparkPost Orange",
+        "job": "Software Engineer"
+      }
+    },
+    {
+      "address": {
+        "email": "abc@flintstone.com",
+        "name": "ABC"
+      },
+      "tags": [
+        "driver",
+        "flintstone"
+      ],
+      "metadata": {
+        "age": "52",
+        "place": "MD"
+      },
+      "substitution_data": {
+        "favorite_color": "Sky Blue",
+        "job": "Driver"
+      }
+    },
+    {
+      "address": {
+        "email": "fred.jones@flintstone.com",
+        "name": "Grad Student Office",
+        "header_to": "grad-student-office@flintstone.com"
+      },
+      "tags": [
+        "driver",
+        "fred",
+        "flintstone"
+      ],
+      "metadata": {
+        "age": "33",
+        "place": "NY"
+      },
+      "substitution_data": {
+        "favorite_color": "Bright Green",
+        "job": "Firefighter"
+      }
+    }
+  ]
+}

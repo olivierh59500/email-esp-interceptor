@@ -1,81 +1,88 @@
 const fetch = require('node-fetch');
 const handleError = require('../utils/handleError');
-const config = require('../../config');
 
-function setAuth() {
-  const auth = new Buffer(`${config.campaignsUsername}:${config.campaignsPassword}`);
-  return `Basic ${auth.toString('base64')}`;
-}
-
-function generateOptions(method = 'GET', body) {
-  const options = {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: setAuth()
+module.exports = (host, auth) => {
+  function generateOptions(method = 'GET', body) {
+    const options = {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: auth
+      }
+    };
+    if (body) {
+      options.body = JSON.stringify(body);
     }
-  };
-  if (body) {
-    options.body = JSON.stringify(body);
+    return options;
   }
-  return options;
-}
 
-function copyHeaders(destination, source, picked = ['X-Per-Page', 'X-Page', 'X-Total-Count']) {
-  picked.forEach((pick) => {
-    const val = source.headers.get(pick);
-    if (val) {
-      destination.set(pick, val);
+  function copyHeaders(destination, source, picked = ['X-Per-Page', 'X-Page', 'X-Total-Count']) {
+    picked.forEach((pick) => {
+      const val = source.headers.get(pick);
+      if (val) {
+        destination.set(pick, val);
+      }
+    });
+  }
+
+  function* fetchResourceList(pathname, res, query) {
+    const path = query ? `${pathname}?${query}` : pathname;
+    const response = yield fetch(host + path, generateOptions());
+    copyHeaders(res, response);
+    const json = yield response.json();
+    if (response.status >= 300) {
+      throw handleError(json.message, response.status);
     }
-  });
-}
-
-function* fetchResourceList(pathname, res, query) {
-  const path = query ? `${pathname}?${query}` : pathname;
-  const response = yield fetch(config.campaignsHost + path, generateOptions());
-  copyHeaders(res, response);
-  const json = yield response.json();
-  if (response.status >= 300) {
-    throw handleError(json.message, response.status);
+    return json;
   }
-  return json;
-}
 
-function* fetchResourceSingle(pathname, resourceId, query) {
-  const path = query ? `${config.campaignsHost}${pathname}/${resourceId}?${query}` :
-    `${config.campaignsHost}${pathname}/${resourceId}`;
-  const res = yield fetch(path, generateOptions());
-  const json = yield res.json();
-  if (res.status >= 300) {
-    throw handleError(json.message, res.status);
+  function* fetchResourceSingle(pathname, resourceId, query) {
+    const path = query ? `${host}${pathname}/${resourceId}?${query}` :
+      `${host}${pathname}/${resourceId}`;
+    const res = yield fetch(path, generateOptions());
+    const json = yield res.json();
+    if (res.status >= 300) {
+      throw handleError(json.message, res.status);
+    }
+    return json;
   }
-  return json;
-}
 
-function* createResource(pathname, reqBody) {
-  const res = yield fetch(`${config.campaignsHost}${pathname}`,
+  function* createResource(pathname, reqBody) {
+    const res = yield fetch(`${host}${pathname}`,
       generateOptions('POST', reqBody));
-  const json = yield res.json();
-  if (res.status >= 300) {
-    throw handleError(json.message, res.status);
+    const json = yield res.json();
+    if (res.status >= 300) {
+      throw handleError(json.message, res.status);
+    }
+    return json;
   }
-  return json;
-}
 
-function* deleteResource(pathname, resourceId) {
-  const res = yield fetch(`${config.campaignsHost}${pathname}/${resourceId}`,
+  function* patchResource(pathname, resourceId, reqBody) {
+    const res = yield fetch(`${host}${pathname}/${resourceId}`,
+      generateOptions('PATCH', reqBody));
+    const json = yield res.json();
+    if (res.status >= 300) {
+      throw handleError(json.message, res.status);
+    }
+    return json;
+  }
+
+  function* deleteResource(pathname, resourceId) {
+    const res = yield fetch(`${host}${pathname}/${resourceId}`,
       generateOptions('DELETE'));
-  const json = yield res.json();
-  if (res.status >= 300) {
-    throw handleError(json.message, res.status);
+    const json = yield res.json();
+    if (res.status >= 300) {
+      throw handleError(json.message, res.status);
+    }
+    return json;
   }
-  return json;
-}
 
-module.exports = {
-  fetchResourceList,
-  fetchResourceSingle,
-  createResource,
-  deleteResource
+  return {
+    fetchResourceList,
+    fetchResourceSingle,
+    createResource,
+    patchResource,
+    deleteResource
+  };
 };
