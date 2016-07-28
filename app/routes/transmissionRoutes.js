@@ -6,8 +6,8 @@ const router = express.Router();
 
 module.exports = (app) => {
   router
+    .use(ensureAuthenticated)
     .route('/')
-    //.use(ensureAuthenticated)
     .post(coExpress(transmission.create));
 
   app.use('/transmissions', router);
