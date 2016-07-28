@@ -1,15 +1,28 @@
 {
-  "name": "graduate_students",
-  "description": "An email list of graduate students at UMBC",
-  "attributes": {
-    "internal_id": 112,
-    "list_group_id": 12321
+  "options": {
+    "start_time": "now",
+    "open_tracking": true,
+    "click_tracking": true,
+    "transactional": false,
+    "sandbox": false,
+    "ip_pool": "sp_shared",
+    "inline_css": false
+  },
+  "description": "Christmas Campaign Email",
+  "campaign_id": "christmas_campaign",
+  "metadata": {
+    "user_type": "students",
+    "education_level": "college"
+  },
+  "substitution_data": {
+    "sender": "Big Store Team",
+    "holiday_name": "Christmas"
   },
   "recipients": [
     {
       "address": {
-        "email": "wilmaflin@yahoo.com",
-        "name": "Wilma"
+        "email": "wilma@flintstone.com",
+        "name": "Wilma Flintstone"
       },
       "tags": [
         "greeting",
@@ -22,47 +35,22 @@
         "place": "Bedrock"
       },
       "substitution_data": {
-        "favorite_color": "SparkPost Orange",
-        "job": "Software Engineer"
-      }
-    },
-    {
-      "address": {
-        "email": "abc@flintstone.com",
-        "name": "ABC"
-      },
-      "tags": [
-        "driver",
-        "flintstone"
-      ],
-      "metadata": {
-        "age": "52",
-        "place": "MD"
-      },
-      "substitution_data": {
-        "favorite_color": "Sky Blue",
-        "job": "Driver"
-      }
-    },
-    {
-      "address": {
-        "email": "fred.jones@flintstone.com",
-        "name": "Grad Student Office",
-        "header_to": "grad-student-office@flintstone.com"
-      },
-      "tags": [
-        "driver",
-        "fred",
-        "flintstone"
-      ],
-      "metadata": {
-        "age": "33",
-        "place": "NY"
-      },
-      "substitution_data": {
-        "favorite_color": "Bright Green",
-        "job": "Firefighter"
+        "customer_type": "Platinum",
+        "year": "Freshman"
       }
     }
-  ]
+  ],
+  "content": {
+    "from": {
+      "name": "Fred Flintstone",
+      "email": "fred@flintstone.com"
+    },
+    "subject": "Big Christmas savings!",
+    "reply_to": "Christmas Sales <sales@flintstone.com>",
+    "headers": {
+      "X-Customer-Campaign-ID": "christmas_campaign"
+    },
+    "text": "Hi  \nSave big this Christmas in your area ! \nClick http://www.mysite.com and get huge discount\n Hurry, this offer is only to \n ",
+    "html": "<p>Hi  \nSave big this Christmas in your area ! \nClick http://www.mysite.com and get huge discount\n</p><p>Hurry, this offer is only to \n</p><p></p>"
+  }
 }
