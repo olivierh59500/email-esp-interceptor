@@ -1,12 +1,12 @@
 const expect = require('chai').expect;
 const { recipientListToSubstitution } = require('../../app/utils/listConverter');
 
-const validSubstitution = require('../fixtures/validSubstitution.json');
+const validRecipients = require('../fixtures/validRecipients.json');
 const missingEmailSubstitution = require('../fixtures/missingEmailSubstitution.json');
 
 describe('List Converter', () => {
   describe('recipientListToSubstitution', () => {
-    const substitution = recipientListToSubstitution(validSubstitution);
+    const substitution = recipientListToSubstitution(validRecipients);
 
     it('returns a substitution item with required properties', () => {
       expect(substitution).to.contain.all.keys(['name', 'data', 'description']);
@@ -21,7 +21,7 @@ describe('List Converter', () => {
     });
 
     it('each recipient in the data array has an email', () => {
-      const recipientEmails = validSubstitution.recipients.map(recip => recip.address.email);
+      const recipientEmails = validRecipients.recipients.map(recip => recip.address.email);
       substitution.data.forEach(recipient => {
         expect(recipientEmails).to.contain(recipient.email);
       });

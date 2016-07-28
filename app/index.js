@@ -8,6 +8,7 @@ const app = new Express();
 app.use(bodyParser.json());
 
 require('./routes/recipientListRoutes')(app);
+require('./routes/transmissionRoutes')(app);
 
 app.use(notFound);
 app.use(errorMiddleware);
