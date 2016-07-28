@@ -14,12 +14,12 @@ config.port = int(process.env.PORT, 10) || 4444;
 config.dbURL = process.env.MONGOHQ_URL || 'mongodb://localhost/ft-email-esp-interceptor-dev';
 config.sentryDSN = process.env.SENTRY_DSN;
 config.campaignsHost = process.env.CAMPAIGNS_HOST || 'https://email-webservices.ft.com/campaigns';
-config.sendServiceHost = process.env.SEND_SERVICE || 'https://email-webservices.ft.com';
+config.sendServiceHost = process.env.SEND_SERVICE_HOST || 'https://email-webservices.ft.com';
 
 // Security and Auth
 config.campaignsUsername = process.env.CAMPAIGNS_USERNAME;
 config.campaignsPassword = process.env.CAMPAIGNS_PASSWORD;
-config.sendServiceAuth = process.env.sendServiceAuth;
+config.sendServiceAuth = process.env.SEND_SERVICE_AUTH;
 
 // Config Variables
 config.logLevel = process.env.LOG_LEVEL || 'info';

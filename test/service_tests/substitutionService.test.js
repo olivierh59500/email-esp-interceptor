@@ -21,7 +21,7 @@ function setNockDelete(path) {
     .delete(path);
 }
 
-describe.only('Substitution Service', () => {
+describe('Substitution Service', () => {
   const substitutionId = '123';
 
   beforeEach(() => {

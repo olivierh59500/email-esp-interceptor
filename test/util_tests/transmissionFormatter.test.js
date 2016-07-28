@@ -3,7 +3,7 @@ const { formatForSend } = require('../../app/utils/transmissionFormatter');
 
 const validTransmission = require('../fixtures/validTransmission');
 
-describe.only('Transmission Formatter', () => {
+describe('Transmission Formatter', () => {
   describe('formatForSend', () => {
     const sendBody = formatForSend(validTransmission);
 

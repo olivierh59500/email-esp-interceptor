@@ -1,11 +1,25 @@
+const find = require('lodash/find');
 const substitutionService = require('../services/substitutionService');
 const transmissionService = require('../services/transmissionService');
 const transmissionFormatter = require('../utils/transmissionFormatter');
 const listConverter = require('../utils/listConverter');
 
+function* pickRecipients(reqBody) {
+  const substitutionId = reqBody.substitutionId;
+  const substitutionRes = yield substitutionService.fetchSubstitution(substitutionId);
+  const filteredRecipients = { data: reqBody.recipients.map(recipient => {
+    return find(substitutionRes.data, { email: recipient.address.email });
+  }) };
+  const recipientList = listConverter.substitutionToRecipientList(filteredRecipients, true);
+  return recipientList.results.recipients;
+}
+
 function* create(req, res) {
   const transmission = req.body;
   const substitutionId = transmission.recipients.list_id;
+  if (req.query.mixed === 'true') {
+    transmission.recipients = yield pickRecipients(req.body);
+  }
   try {
     if (substitutionId) {
       const substitutionRes = yield substitutionService.fetchSubstitution(substitutionId);
