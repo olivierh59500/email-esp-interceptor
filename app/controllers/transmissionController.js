@@ -1,31 +1,20 @@
-const find = require('lodash/find');
-const substitutionService = require('../services/substitutionService');
+const handleError = require('../utils/handleError');
 const transmissionService = require('../services/transmissionService');
 const transmissionFormatter = require('../utils/transmissionFormatter');
-const listConverter = require('../utils/listConverter');
 
-function* pickRecipients(reqBody) {
-  const substitutionId = reqBody.substitutionId;
-  const substitutionRes = yield substitutionService.fetchSubstitution(substitutionId);
-  const filteredRecipients = { data: reqBody.recipients.map(recipient => {
-    return find(substitutionRes.data, { email: recipient.address.email });
-  }) };
-  const recipientList = listConverter.substitutionToRecipientList(filteredRecipients, true);
-  return recipientList.results.recipients;
+function transmissionError(err) {
+  return handleError('Transmission Error', err.status, [
+    {
+      description: 'There was a problem with your transmission request.',
+      code: '400',
+      message: err.message
+    }
+  ]);
 }
 
-function* create(req, res) {
+function* create(req, res, next) {
   const transmission = req.body;
-  const substitutionId = transmission.recipients.list_id;
-  if (req.query.mixed === 'true') {
-    transmission.recipients = yield pickRecipients(req.body);
-  }
   try {
-    if (substitutionId) {
-      const substitutionRes = yield substitutionService.fetchSubstitution(substitutionId);
-      const recipientsList = listConverter.substitutionToRecipientList(substitutionRes, true);
-      transmission.recipients = recipientsList.results.recipients;
-    }
     const sendBody = transmissionFormatter.formatForSend(transmission);
     yield transmissionService.createTransmission(sendBody);
     res.json({
@@ -36,15 +25,7 @@ function* create(req, res) {
       }
     });
   } catch (err) {
-    res.status(400).json({
-      errors: [
-        {
-          description: 'There was a problem with your transmission request.',
-          code: '400',
-          message: err.message
-        }
-      ]
-    });
+    next(transmissionError(err));
   }
 }
 
