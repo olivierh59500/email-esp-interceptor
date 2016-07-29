@@ -7,10 +7,7 @@ function notFound(req, res, next) {
 // eslint-disable-next-line
 function errorMiddleware(err, req, res, next) {
   res.status(err.status || err.statusCode || 500);
-  return res.json({
-    message: err.message,
-    errors: err.errors || []
-  });
+  return res.json({ errors: err.errors || {} });
 }
 
 module.exports = {
