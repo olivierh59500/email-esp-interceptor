@@ -1,5 +1,5 @@
 {
-  "name":"email-esp-interceptor",
+  "name":"ft-email-esp-interceptor",
   "scripts":{},
   "env":{
     "NODE_ENV":{
@@ -12,6 +12,12 @@
       "required":true
     },
     "SEND_SERVICE_AUTH":{
+      "required":true
+    },
+    "AUTH_USER":{
+      "required":true
+    },
+    "AUTH_PASSWORD":{
       "required":true
     }
   },
