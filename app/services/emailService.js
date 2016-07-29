@@ -4,7 +4,7 @@ const basicAuth = `Basic ${auth.toString('base64')}`;
 const fetcher = require('./_fetcher')(config.campaignsHost, basicAuth);
 
 function* fetchEmail(emailId) {
-  return yield fetcher.fetchResourceSingle('/emails', emailId);
+  return yield fetcher.fetchResourceSingle('/emails', emailId, 'compile=true');
 }
 
 module.exports = {
