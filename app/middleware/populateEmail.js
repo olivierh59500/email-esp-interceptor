@@ -14,7 +14,6 @@ function emailError(err) {
 module.exports = function* populateEmail(req, res, next) {
   try {
     const email = yield emailService.fetchEmail(req.body.content.template_id);
-    console.log(email);
     req.body.content.html = email.htmlBody;
     req.body.content.text = email.plainBody;
     req.body.content.subject = email.subject;

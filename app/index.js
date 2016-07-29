@@ -7,11 +7,7 @@ const app = new Express();
 
 // common middleware
 app.use(bodyParser.json());
-app.use(validator({
-  customValidators: {
-    isArray: (value) => Array.isArray(value)
-  }
-}));
+app.use(validator());
 
 require('./routes/recipientListRoutes')(app);
 require('./routes/transmissionRoutes')(app);
