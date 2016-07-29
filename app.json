@@ -1,0 +1,21 @@
+{
+  "name":"email-esp-interceptor",
+  "scripts":{},
+  "env":{
+    "NODE_ENV":{
+      "required":true
+    },
+    "CAMPAIGNS_USERNAME":{
+      "required":true
+    },
+    "CAMPAIGNS_PASSWORD":{
+      "required":true
+    },
+    "SEND_SERVICE_AUTH":{
+      "required":true
+    }
+  },
+  "addons":[
+    "papertrail"
+  ]
+}
