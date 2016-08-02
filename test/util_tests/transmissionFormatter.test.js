@@ -23,9 +23,17 @@ describe('Transmission Formatter', () => {
         validTransmission.substitution_data);
     });
 
-    it('has correct metadata', () => {
-      expect(sendBody).to.have.deep.property('transmissionHeader.metadata',
-        validTransmission.metadata);
+    it('has metadata', () => {
+      expect(sendBody).to.have.deep.property('transmissionHeader.metadata');
+    });
+
+    it('adds generated sentEmailId to metadata', () => {
+      expect(sendBody).to.have.deep.property('transmissionHeader.metadata.sentEmailId');
+    });
+
+    it('assigns template_id to parentEmailId to metadata', () => {
+      expect(sendBody).to.have.deep.property('transmissionHeader.metadata.parentEmailId',
+        validTransmission.content.template_id);
     });
 
     it('has correct subject', () => {

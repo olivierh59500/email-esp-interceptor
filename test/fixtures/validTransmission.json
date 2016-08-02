@@ -41,6 +41,7 @@
     }
   ],
   "content": {
+    "template_id": "123",
     "from": {
       "name": "Fred Flintstone",
       "email": "fred@flintstone.com"

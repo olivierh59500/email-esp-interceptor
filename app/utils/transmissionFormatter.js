@@ -1,3 +1,5 @@
+const uuid = require('node-uuid');
+
 function generateSendBodyBase() {
   return {
     transmissionHeader: {
@@ -27,8 +29,11 @@ exports.formatForSend = transmission => {
     sendBody.transmissionHeader.userSubstitutionData.push(substitutionData);
   });
   const content = transmission.content;
+  const metadata = Object.assign({},
+    transmission.metadata,
+    { sentEmailId: uuid.v4(), parentEmailId: content.template_id });
+  sendBody.transmissionHeader.metadata = metadata;
   sendBody.transmissionHeader.globalSubstitutionData = transmission.substitution_data;
-  sendBody.transmissionHeader.metadata = transmission.metadata;
   sendBody.from.address = content.from.email ? content.from.email : content.from;
   sendBody.from.name = content.from.name ? content.from.name : 'Financial Times';
   sendBody.subject = content.subject;
