@@ -31,7 +31,7 @@ exports.formatForSend = transmission => {
   const content = transmission.content;
   const metadata = Object.assign({},
     transmission.metadata,
-    { sentEmailId: uuid.v4(), parentEmailId: content.template_id });
+    { emailId: uuid.v4(), parentEmailId: content.template_id });
   sendBody.transmissionHeader.metadata = metadata;
   sendBody.transmissionHeader.globalSubstitutionData = transmission.substitution_data;
   sendBody.from.address = content.from.email ? content.from.email : content.from;
