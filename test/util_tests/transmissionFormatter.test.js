@@ -27,8 +27,8 @@ describe('Transmission Formatter', () => {
       expect(sendBody).to.have.deep.property('transmissionHeader.metadata');
     });
 
-    it('adds generated sentEmailId to metadata', () => {
-      expect(sendBody).to.have.deep.property('transmissionHeader.metadata.sentEmailId');
+    it('adds generated emailId to metadata', () => {
+      expect(sendBody).to.have.deep.property('transmissionHeader.metadata.emailId');
     });
 
     it('assigns template_id to parentEmailId to metadata', () => {
