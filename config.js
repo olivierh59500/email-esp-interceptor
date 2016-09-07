@@ -17,8 +17,8 @@ config.campaignsHost = process.env.CAMPAIGNS_HOST || 'https://email-webservices.
 config.sendServiceHost = process.env.SEND_SERVICE_HOST || 'https://email-webservices.ft.com';
 
 // Security and Auth
-config.campaignsUsername = process.env.CAMPAIGNS_USERNAME;
-config.campaignsPassword = process.env.CAMPAIGNS_PASSWORD;
+config.campaignsUsername = process.env.CAMPAIGNS_USERNAME || 'development';
+config.campaignsPassword = process.env.CAMPAIGNS_PASSWORD || 'development';
 config.sendServiceAuth = process.env.SEND_SERVICE_AUTH;
 
 // Config Variables

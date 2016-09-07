@@ -20,7 +20,7 @@ function generateSendBodyBase() {
   };
 }
 
-exports.formatForSend = transmission => {
+exports.formatForSend = (transmission) => {
   const sendBody = generateSendBodyBase();
   transmission.recipients.forEach(recipient => {
     const email = recipient.address.email ? recipient.address.email : recipient.address;
@@ -31,7 +31,11 @@ exports.formatForSend = transmission => {
   const content = transmission.content;
   const metadata = Object.assign({},
     transmission.metadata,
-    { emailId: uuid.v4(), parentEmailId: content.template_id });
+    {
+      emailId: uuid.v4(),
+      parentEmailId: content.template_id,
+      substitutionId: transmission.substitutionId
+    });
   sendBody.transmissionHeader.metadata = metadata;
   sendBody.transmissionHeader.globalSubstitutionData = transmission.substitution_data;
   sendBody.from.address = content.from.email ? content.from.email : content.from;
