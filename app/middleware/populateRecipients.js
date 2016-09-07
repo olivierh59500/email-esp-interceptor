@@ -35,7 +35,8 @@ module.exports = function* populateRecipients(req, res, next) {
         req.body.recipients, (yield retrieveSubstitution(req.body.substitutionId))));
     } else if (req.body.recipients.list_id) {
       req.body.substitutionId = req.body.recipients.list_id;
-      req.body.recipients = convertToRecipients((yield retrieveSubstitution(req.body.substitutionId)));
+      req.body.recipients = convertToRecipients(
+        (yield retrieveSubstitution(req.body.substitutionId)));
     }
     next();
   } catch (err) {
