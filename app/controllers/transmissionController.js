@@ -15,8 +15,9 @@ function transmissionError(err) {
 function* create(req, res, next) {
   const transmission = req.body;
   try {
+    const isPreview = req.query.preview === 'true';
     const sendBody = transmissionFormatter.formatForSend(transmission);
-    yield transmissionService.createTransmission(sendBody);
+    yield transmissionService.createTransmission(sendBody, isPreview);
     res.json({
       results: {
         total_rejected_recipients: 0,

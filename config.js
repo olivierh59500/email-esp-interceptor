@@ -20,6 +20,7 @@ config.sendServiceHost = process.env.SEND_SERVICE_HOST || 'https://email-webserv
 config.campaignsUsername = process.env.CAMPAIGNS_USERNAME || 'development';
 config.campaignsPassword = process.env.CAMPAIGNS_PASSWORD || 'development';
 config.sendServiceAuth = process.env.SEND_SERVICE_AUTH;
+config.testSendServiceAuth = process.env.TEST_SEND_SERVICE_AUTH;
 
 // Config Variables
 config.logLevel = process.env.LOG_LEVEL || 'info';
