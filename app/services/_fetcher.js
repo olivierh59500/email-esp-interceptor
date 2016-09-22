@@ -53,7 +53,7 @@ module.exports = (host, auth) => {
       generateOptions('POST', reqBody));
     const json = yield res.json();
     if (res.status >= 300) {
-      throw handleError(json.message, res.status);
+      throw handleError(json.message, res.status, json.errors);
     }
     return json;
   }
