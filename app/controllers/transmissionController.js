@@ -3,7 +3,7 @@ const transmissionService = require('../services/transmissionService');
 const transmissionFormatter = require('../utils/transmissionFormatter');
 
 function transmissionError(err) {
-  return handleError('Transmission Error', err.status, err.errors);
+  return handleError(err.message, err.status, err.errors);
 }
 
 function* list(req, res, next) {
