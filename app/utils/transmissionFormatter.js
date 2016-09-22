@@ -29,6 +29,7 @@ exports.formatForSend = (transmission) => {
     sendBody.transmissionHeader.userSubstitutionData.push(substitutionData);
   });
   const content = transmission.content;
+  const startTime = (transmission.options && transmission.options.start_time) || 'now';
   const metadata = Object.assign({},
     transmission.metadata,
     {
@@ -38,6 +39,7 @@ exports.formatForSend = (transmission) => {
     });
   sendBody.transmissionHeader.metadata = metadata;
   sendBody.transmissionHeader.globalSubstitutionData = transmission.substitution_data;
+  sendBody.transmissionHeader.startTime = startTime;
   sendBody.from.address = content.from.email ? content.from.email : content.from;
   sendBody.from.name = content.from.name ? content.from.name : 'Financial Times';
   sendBody.subject = content.subject;

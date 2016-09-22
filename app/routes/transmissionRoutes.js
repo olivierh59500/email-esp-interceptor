@@ -9,10 +9,15 @@ const router = express.Router();
 
 module.exports = (app) => {
   router
-    .use(ensureAuthenticated, validateTransmission,
-      coExpress(populateEmail), coExpress(populateRecipients))
+    .use(ensureAuthenticated)
+    .route('/:id')
+    .delete(coExpress(transmission.deleteTransmission));
+  router
     .route('/')
-    .post(coExpress(transmission.create));
+    .get(coExpress(transmission.list))
+    .post(validateTransmission, coExpress(populateEmail), coExpress(populateRecipients),
+      coExpress(transmission.create));
+
 
   app.use('/transmissions', router);
 };

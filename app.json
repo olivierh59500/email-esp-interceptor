@@ -2,6 +2,12 @@
   "name":"ft-email-esp-interceptor",
   "scripts":{},
   "env":{
+    "ESP_HOST":{
+      "required":true
+    },
+    "ESP_AUTH":{
+      "required":true
+    },
     "NODE_ENV":{
       "required":true
     },
