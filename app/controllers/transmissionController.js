@@ -40,6 +40,16 @@ function* create(req, res, next) {
   }
 }
 
+function* get(req, res, next) {
+  let getResponse;
+  try {
+    getResponse = yield transmissionService.getTransmission(req.params.id);
+  } catch (err) {
+    return next(transmissionError(err));
+  }
+  return res.json(getResponse);
+}
+
 function* deleteTransmission(req, res, next) {
   let delResponse;
   try {
@@ -53,5 +63,6 @@ function* deleteTransmission(req, res, next) {
 module.exports = {
   create,
   list,
-  deleteTransmission
+  deleteTransmission,
+  get
 };

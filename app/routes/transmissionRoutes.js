@@ -11,6 +11,7 @@ module.exports = (app) => {
   router
     .use(ensureAuthenticated)
     .route('/:id')
+    .get(coExpress(transmission.get))
     .delete(coExpress(transmission.deleteTransmission));
   router
     .route('/')
