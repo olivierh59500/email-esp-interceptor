@@ -37,6 +37,9 @@ exports.formatForSend = (transmission) => {
       parentEmailId: content.template_id,
       substitutionId: transmission.substitutionId
     });
+  if (transmission.name) {
+    sendBody.transmissionHeader.name = transmission.name;
+  }
   sendBody.transmissionHeader.metadata = metadata;
   sendBody.transmissionHeader.globalSubstitutionData = transmission.substitution_data;
   sendBody.transmissionHeader.startTime = startTime;
