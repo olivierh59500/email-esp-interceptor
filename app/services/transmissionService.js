@@ -24,8 +24,13 @@ function* deleteTransmission(id) {
   return yield espFetcher.deleteResource('/api/v1/transmissions', id);
 }
 
+function* getTransmission(id) {
+  return yield espFetcher.fetchResourceSingle('/api/v1/transmissions', id);
+}
+
 module.exports = {
   createTransmission,
   fetchTransmissions,
-  deleteTransmission
+  deleteTransmission,
+  getTransmission
 };
