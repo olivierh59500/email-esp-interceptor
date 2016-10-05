@@ -8,6 +8,9 @@
     "ESP_AUTH":{
       "required":true
     },
+    "ESP_READ_AUTH":{
+      "required":true
+    },
     "NODE_ENV":{
       "required":true
     },

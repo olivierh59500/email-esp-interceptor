@@ -20,5 +20,5 @@ module.exports = (app) => {
       coExpress(transmission.create));
 
 
-  app.use('/transmissions', router);
+  app.use('(/api/v1)?/transmissions', router);
 };

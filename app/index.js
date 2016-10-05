@@ -9,6 +9,7 @@ const app = new Express();
 app.use(bodyParser.json());
 app.use(validator());
 
+require('./routes/messageEventsRoutes')(app);
 require('./routes/recipientListRoutes')(app);
 require('./routes/transmissionRoutes')(app);
 
