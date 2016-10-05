@@ -13,5 +13,5 @@ module.exports = (app) => {
     .route('/:recipientListId')
     .get(coExpress(recipientList.read));
 
-  app.use('/recipient-lists', router);
+  app.use('(/api/v1)?/recipient-lists', router);
 };

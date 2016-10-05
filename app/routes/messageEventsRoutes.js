@@ -10,5 +10,5 @@ module.exports = (app) => {
     .route('/')
     .get(coExpress(messageEvents.list));
 
-  app.use('/message-events', router);
+  app.use('(/api/v1)?/message-events', router);
 };
