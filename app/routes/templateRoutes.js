@@ -7,6 +7,8 @@ const router = express.Router();
 module.exports = (app) => {
   router
     .use(ensureAuthenticated)
+    .route('/:templateId')
+    .get(coExpress(templates.get))
     .route('/')
     .get(coExpress(templates.list));
 
