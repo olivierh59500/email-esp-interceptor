@@ -1,6 +1,7 @@
 const handleError = require('../utils/handleError');
 
 module.exports = (req, res, next) => {
+  console.log(req.body.recipients[0]);
   req.checkBody('recipients').notEmpty();
   req.checkBody('recipients.list_id').optional().notEmpty();
   req.checkBody('content.template_id').notEmpty();
