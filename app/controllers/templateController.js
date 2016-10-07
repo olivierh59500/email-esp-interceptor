@@ -1,7 +1,14 @@
 // const templatesService = require('../services/templateService');
 
 function* list(req, res) {
-  res.json({ results: [] });
+  res.json({ results: [
+    {
+      id: '57da6024932d0503002eb369',
+      name: 'test',
+      description: 'test',
+      published: true
+    }
+  ] });
 }
 
 function* get(req, res) {
