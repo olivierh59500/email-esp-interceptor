@@ -8,7 +8,8 @@ module.exports = (app) => {
   router
     .use(ensureAuthenticated)
     .route('/:templateId')
-    .get(coExpress(templates.get))
+    .get(coExpress(templates.get));
+  router
     .route('/')
     .get(coExpress(templates.list));
 
