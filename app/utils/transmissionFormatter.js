@@ -48,6 +48,6 @@ exports.formatForSend = (transmission) => {
   sendBody.subject = content.subject;
   sendBody.htmlContent = content.html;
   sendBody.plainTextContent = content.text;
-  
+ 
   return sendBody;
 };
