@@ -29,7 +29,6 @@ exports.formatForSend = (transmission) => {
     sendBody.transmissionHeader.userSubstitutionData.push(substitutionData);
   });
   const content = transmission.content;
-  console.log(content);
   const startTime = (transmission.options && transmission.options.start_time) || 'now';
   const metadata = Object.assign({},
     transmission.metadata,
