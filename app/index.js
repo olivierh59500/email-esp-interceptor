@@ -12,6 +12,7 @@ app.use(validator());
 require('./routes/messageEventsRoutes')(app);
 require('./routes/recipientListRoutes')(app);
 require('./routes/transmissionRoutes')(app);
+require('./routes/templateRoutes')(app);
 
 app.use(notFound);
 app.use(errorMiddleware);
