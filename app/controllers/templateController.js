@@ -1,7 +1,7 @@
 // const templatesService = require('../services/templateService');
 
 function* list(req, res) {
-  res.json([]);
+  res.json({ results: [] });
 }
 
 module.exports = {
