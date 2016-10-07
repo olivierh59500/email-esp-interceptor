@@ -4,7 +4,7 @@ function* list(req, res) {
   res.json({ results: [
     {
       id: '57da6024932d0503002eb369',
-      name: 'test',
+      name: '57da6024932d0503002eb369',
       description: 'test',
       published: true
     }
