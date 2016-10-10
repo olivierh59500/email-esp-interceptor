@@ -1,26 +1,21 @@
-// const templatesService = require('../services/templateService');
+const templateService = require('../services/templateService');
+const handleError = require('../utils/handleError');
 
-function* list(req, res) {
-  res.json({ results: [
-    {
-      id: '57da6024932d0503002eb369',
-      name: '57da6024932d0503002eb369',
-      description: 'test',
-      published: true
-    }
-  ] });
+function templateError(err) {
+  return handleError(err.message, err.status, err.errors);
 }
 
-function* get(req, res) {
-  res.json({
-    results: {
-      id: req.params.templateId,
-      name: 'test'
-    }
-  });
+function* list(req, res, next) {
+  let emailTemplates;
+  try {
+    emailTemplates = yield templateService.fetchTemplates();
+  } catch (err) {
+    return next(templateError(err));
+  }
+
+  return res.json(emailTemplates.map(template => ({ id: template._id, name: template.name })));
 }
 
 module.exports = {
-  list,
-  get
+  list
 };
