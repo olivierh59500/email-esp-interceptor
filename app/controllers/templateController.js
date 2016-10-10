@@ -13,7 +13,9 @@ function* list(req, res, next) {
     return next(templateError(err));
   }
 
-  return res.json(emailTemplates.map(template => ({ id: template._id, name: template.name })));
+  return res.json({
+    results: emailTemplates.map(template => ({ id: template._id, name: template.name }))
+  });
 }
 
 module.exports = {
