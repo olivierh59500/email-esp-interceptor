@@ -8,6 +8,7 @@ module.exports = (app) => {
   router
     .use(ensureAuthenticated)
     .route('/')
+    .get(coExpress(recipientList.list))
     .post(coExpress(recipientList.create));
   router
     .route('/:recipientListId')
