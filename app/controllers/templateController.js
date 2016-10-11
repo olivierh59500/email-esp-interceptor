@@ -14,7 +14,11 @@ function* list(req, res, next) {
   }
 
   return res.json({
-    results: emailTemplates.map(template => ({ id: template._id, name: template.name }))
+    results: emailTemplates.map(template => ({
+      id: template._id,
+      name: template.name,
+      published: true
+    }))
   });
 }
 
