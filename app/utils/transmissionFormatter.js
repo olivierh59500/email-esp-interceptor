@@ -31,12 +31,13 @@ exports.formatForSend = (transmission) => {
   const content = transmission.content;
   const startTime = (transmission.options && transmission.options.start_time) || 'now';
   const metadata = Object.assign({},
-    transmission.metadata,
     {
       emailId: uuid.v4(),
       parentEmailId: content.template_id,
       substitutionId: transmission.substitutionId
-    });
+    },
+    transmission.metadata
+  );
   if (transmission.name) {
     sendBody.transmissionHeader.name = transmission.name;
   }
