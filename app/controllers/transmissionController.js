@@ -32,7 +32,7 @@ function* create(req, res, next) {
       results: {
         total_rejected_recipients: 0,
         total_accepted_recipients: transmission.recipients.length,
-        id: Date.now()
+        id: sendBody.description
       }
     });
   } catch (err) {

@@ -11,6 +11,9 @@ function* list(req, res, next) {
   let messageEvents;
   try {
     messageEvents = yield messageEventsService.fetchEvents(query);
+    messageEvents.results.forEach(event => {
+      event.transmission_id = event.description || event.transmission_id;
+    });
   } catch (err) {
     return next(messageEventsError(err));
   }
