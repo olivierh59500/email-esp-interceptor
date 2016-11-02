@@ -12,7 +12,7 @@ function* list(req, res, next) {
   try {
     messageEvents = yield messageEventsService.fetchEvents(query);
     messageEvents.results.forEach(event => {
-      event.transmission_id = event.description || event.transmission_id;
+      event.transmission_id = event.rcpt_meta.emailId || event.transmission_id;
     });
   } catch (err) {
     return next(messageEventsError(err));
