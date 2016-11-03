@@ -18,6 +18,12 @@ module.exports = function* populateEmail(req, res, next) {
     req.body.content.text = email.plainBody;
     req.body.content.subject = email.subject;
     req.body.content.from = { email: email.from.address, name: email.from.name };
+    if (email.campaign) {
+      req.body.metadata = {
+        campaignId: email.campaign._id,
+        campaignName: email.campaign.name
+      };
+    }
     next();
   } catch (err) {
     next(emailError(err));
