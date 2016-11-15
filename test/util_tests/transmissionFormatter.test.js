@@ -31,11 +31,6 @@ describe('Transmission Formatter', () => {
       expect(sendBody).to.have.deep.property('transmissionHeader.metadata.emailId');
     });
 
-    it('assigns template_id to parentEmailId to metadata', () => {
-      expect(sendBody).to.have.deep.property('transmissionHeader.metadata.parentEmailId',
-        validTransmission.content.template_id);
-    });
-
     it('has correct subject', () => {
       expect(sendBody).to.have.property('subject', validTransmission.content.subject);
     });

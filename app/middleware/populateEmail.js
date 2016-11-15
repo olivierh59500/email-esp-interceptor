@@ -21,7 +21,9 @@ module.exports = function* populateEmail(req, res, next) {
     if (email.campaign) {
       req.body.metadata = {
         campaignId: email.campaign._id,
-        campaignName: email.campaign.name
+        campaignName: email.campaign.name,
+        parentEmailId: email._id,
+        parentEmailName: email.name
       };
     }
     next();
