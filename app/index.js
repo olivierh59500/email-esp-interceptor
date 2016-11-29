@@ -6,7 +6,7 @@ const { notFound, errorMiddleware } = require('./middleware/errors');
 const app = new Express();
 
 // common middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(validator());
 
 require('./routes/messageEventsRoutes')(app);
