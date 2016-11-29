@@ -33,7 +33,7 @@ exports.formatForSend = (transmission) => {
   const metadata = Object.assign({},
     {
       emailId: uuid.v4(),
-      listId: transmission.substitutionId
+      substitutionId: transmission.substitutionId
     },
     transmission.metadata
   );
