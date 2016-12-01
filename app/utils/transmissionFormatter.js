@@ -43,7 +43,7 @@ exports.formatForSend = (transmission) => {
   if (content.replyTo) {
     sendBody.replyTo = content.reply_to;
   }
-  
+
   sendBody.transmissionHeader.metadata = metadata;
   sendBody.transmissionHeader.globalSubstitutionData = transmission.substitution_data;
   sendBody.transmissionHeader.startTime = startTime;
