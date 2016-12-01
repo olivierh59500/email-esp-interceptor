@@ -40,6 +40,10 @@ exports.formatForSend = (transmission) => {
   if (transmission.name) {
     sendBody.transmissionHeader.name = transmission.name;
   }
+  if (content.replyTo) {
+    sendBody.replyTo = content.replyTo;
+  }
+  
   sendBody.transmissionHeader.metadata = metadata;
   sendBody.transmissionHeader.globalSubstitutionData = transmission.substitution_data;
   sendBody.transmissionHeader.startTime = startTime;
