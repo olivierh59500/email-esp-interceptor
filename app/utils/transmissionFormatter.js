@@ -41,7 +41,7 @@ exports.formatForSend = (transmission) => {
     sendBody.transmissionHeader.name = transmission.name;
   }
   if (content.replyTo) {
-    sendBody.replyTo = content.replyTo;
+    sendBody.replyTo = content.reply_to;
   }
   
   sendBody.transmissionHeader.metadata = metadata;
