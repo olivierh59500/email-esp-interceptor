@@ -26,6 +26,9 @@ module.exports = function* populateEmail(req, res, next) {
         parentEmailName: email.name
       };
     }
+    if (email.replyTo) {
+      req.body.content.reply_to = email.replyTo;
+    }
     next();
   } catch (err) {
     next(emailError(err));
