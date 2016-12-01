@@ -53,6 +53,5 @@ exports.formatForSend = (transmission) => {
   sendBody.htmlContent = content.html;
   sendBody.plainTextContent = content.text;
 
-  console.log(sendBody);
   return sendBody;
 };
