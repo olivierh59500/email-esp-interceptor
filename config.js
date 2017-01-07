@@ -13,7 +13,7 @@ config.port = int(process.env.PORT, 10) || 4444;
 // Service Hosts
 config.dbURL = process.env.MONGOHQ_URL || 'mongodb://localhost/ft-email-esp-interceptor-dev';
 config.sentryDSN = process.env.SENTRY_DSN;
-config.campaignsHost = process.env.CAMPAIGNS_HOST || 'https://email-webservices.ft.com/campaigns';
+config.campaignsHost = process.env.CAMPAIGNS_HOST || 'http://localhost:4444/campaigns';
 config.sendServiceHost = process.env.SEND_SERVICE_HOST || 'https://email-webservices.ft.com';
 config.espHost = process.env.ESP_HOST || 'https://ft.sparkpostelite.com';
 
